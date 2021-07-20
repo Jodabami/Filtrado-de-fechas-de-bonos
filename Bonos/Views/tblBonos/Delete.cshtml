@@ -1,0 +1,64 @@
+﻿@model Bonos.Models.tblBonos
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Estás seguro de que quieres eliminar esto?</h3>
+<div>
+    <h4>Bonos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Departamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Departamento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Motivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Motivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblUsuarios.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblUsuarios.Nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    }
+</div>

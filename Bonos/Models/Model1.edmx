@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BonosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblBonos">
+          <Key>
+            <PropertyRef Name="IdBonos" />
+          </Key>
+          <Property Name="IdBonos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Departamento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Bono" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Motivo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuarios" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUsuarios">
+          <Key>
+            <PropertyRef Name="IdUsuarios" />
+          </Key>
+          <Property Name="IdUsuarios" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FKtblUsuario">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="1" />
+          <End Role="tblBonos" Type="Self.tblBonos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="IdUsuarios" />
+            </Principal>
+            <Dependent Role="tblBonos">
+              <PropertyRef Name="IdUsuarios" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BonosModelStoreContainer">
+          <EntitySet Name="tblBonos" EntityType="Self.tblBonos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUsuarios" EntityType="Self.tblUsuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FKtblUsuario" Association="Self.FKtblUsuario">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblBonos" EntitySet="tblBonos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BonosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblBonos">
+          <Key>
+            <PropertyRef Name="IdBonos" />
+          </Key>
+          <Property Name="IdBonos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Departamento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Bono" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Motivo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdUsuarios" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblUsuarios" Relationship="Self.FKtblUsuario" FromRole="tblBonos" ToRole="tblUsuarios" />
+        </EntityType>
+        <EntityType Name="tblUsuarios">
+          <Key>
+            <PropertyRef Name="IdUsuarios" />
+          </Key>
+          <Property Name="IdUsuarios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblBonos" Relationship="Self.FKtblUsuario" FromRole="tblUsuarios" ToRole="tblBonos" />
+        </EntityType>
+        <Association Name="FKtblUsuario">
+          <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="1" />
+          <End Role="tblBonos" Type="Self.tblBonos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuarios">
+              <PropertyRef Name="IdUsuarios" />
+            </Principal>
+            <Dependent Role="tblBonos">
+              <PropertyRef Name="IdUsuarios" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BonosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblBonos" EntityType="Self.tblBonos" />
+          <EntitySet Name="tblUsuarios" EntityType="Self.tblUsuarios" />
+          <AssociationSet Name="FKtblUsuario" Association="Self.FKtblUsuario">
+            <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+            <End Role="tblBonos" EntitySet="tblBonos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BonosModelStoreContainer" CdmEntityContainer="BonosEntities">
+          <EntitySetMapping Name="tblBonos">
+            <EntityTypeMapping TypeName="BonosModel.tblBonos">
+              <MappingFragment StoreEntitySet="tblBonos">
+                <ScalarProperty Name="IdBonos" ColumnName="IdBonos" />
+                <ScalarProperty Name="Departamento" ColumnName="Departamento" />
+                <ScalarProperty Name="Bono" ColumnName="Bono" />
+                <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="IdUsuarios" ColumnName="IdUsuarios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsuarios">
+            <EntityTypeMapping TypeName="BonosModel.tblUsuarios">
+              <MappingFragment StoreEntitySet="tblUsuarios">
+                <ScalarProperty Name="IdUsuarios" ColumnName="IdUsuarios" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

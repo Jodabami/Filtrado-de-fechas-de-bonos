@@ -1,0 +1,58 @@
+﻿@model Bonos.Models.tblBonos
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Bonos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Departamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Departamento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Motivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Motivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblUsuarios.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblUsuarios.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdBonos }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

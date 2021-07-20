@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Bonos.Models.tblBonos>
+
+@{
+    ViewBag.Title = "Ver";
+}
+
+<h2>Ver</h2>
+<p></p>
+<p></p>
+<p>
+    @Html.ActionLink("Crear Nuevo Bono", "Create")
+</p>
+<p></p>
+<p></p>
+@using (Html.BeginForm("Index", "tblBonos", FormMethod.Post))
+{
+        <label>Desde:&nbsp;</label><input type="date" name="Desde" />
+        <label>Hasta:&nbsp;</label> <input type="date" name="Hasta" />
+        <label>Hasta:&nbsp;</label><input type="submit" value="Buscar" />
+}
+<p></p>
+<p></p>
+<p></p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Departamento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Motivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblUsuarios.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Motivo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tblUsuarios.Nombre)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.IdBonos }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.IdBonos }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.IdBonos })
+            </td>
+        </tr>
+    }
+
+</table>

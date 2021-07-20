@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BonosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblBonos">
+    <Key>
+      <PropertyRef Name="IdBonos" />
+    </Key>
+    <Property Name="IdBonos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Departamento" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Bono" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Motivo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="IdUsuarios" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblUsuarios">
+    <Key>
+      <PropertyRef Name="IdUsuarios" />
+    </Key>
+    <Property Name="IdUsuarios" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FKtblUsuario">
+    <End Role="tblUsuarios" Type="Self.tblUsuarios" Multiplicity="1" />
+    <End Role="tblBonos" Type="Self.tblBonos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsuarios">
+        <PropertyRef Name="IdUsuarios" />
+      </Principal>
+      <Dependent Role="tblBonos">
+        <PropertyRef Name="IdUsuarios" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BonosModelStoreContainer">
+    <EntitySet Name="tblBonos" EntityType="Self.tblBonos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUsuarios" EntityType="Self.tblUsuarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FKtblUsuario" Association="Self.FKtblUsuario">
+      <End Role="tblUsuarios" EntitySet="tblUsuarios" />
+      <End Role="tblBonos" EntitySet="tblBonos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

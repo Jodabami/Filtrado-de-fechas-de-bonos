@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BonosModelStoreContainer" CdmEntityContainer="BonosEntities">
+    <EntitySetMapping Name="tblBonos">
+      <EntityTypeMapping TypeName="BonosModel.tblBonos">
+        <MappingFragment StoreEntitySet="tblBonos">
+          <ScalarProperty Name="IdBonos" ColumnName="IdBonos" />
+          <ScalarProperty Name="Departamento" ColumnName="Departamento" />
+          <ScalarProperty Name="Bono" ColumnName="Bono" />
+          <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="IdUsuarios" ColumnName="IdUsuarios" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsuarios">
+      <EntityTypeMapping TypeName="BonosModel.tblUsuarios">
+        <MappingFragment StoreEntitySet="tblUsuarios">
+          <ScalarProperty Name="IdUsuarios" ColumnName="IdUsuarios" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

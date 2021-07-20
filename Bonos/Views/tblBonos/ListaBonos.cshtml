@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Bonos.Models.ViewModels.SumaBonos>
+
+@{
+    ViewBag.Title = "Lista de Bonos";
+}
+
+<h2>Lista de Bonos</h2>
+<p></p>
+<p></p>
+<p>
+    @Html.ActionLink("Crear Nuevo Bono", "Create")
+</p>
+<p></p>
+<p></p>
+
+<p>
+    @Html.ActionLink("Mostrar todos", "Index")
+</p>
+<p></p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Nombre")
+        </th>
+        <th>
+            @Html.DisplayName("Bonos")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bonos)
+            </td>
+        </tr>
+    }
+
+</table>
